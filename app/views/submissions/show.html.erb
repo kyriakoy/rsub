@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @submission.name %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @submission.notes %>
+</p>
+
+<h2>Reffers</h2>
+<% @submission.reffers.each do |reffer| %>
+  <p>
+    <b>Refcode:</b>
+    <%= reffer.refcode %>
+  </p>
+
+  <p>
+    <b>Note:</b>
+    <%= reffer.note %>
+  </p>
+<% end %>
+
+<h2>Add a refer:</h2>
+<%= form_for([@submission, @submission.reffers.build]) do |f| %>
+  <div class="field">
+    <%= f.label :refcode %><br />
+    <%= f.text_field :refcode %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>
